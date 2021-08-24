@@ -4,13 +4,12 @@ Groovin' Mod Framework Documentation
 Contents:
 
 .. toctree::
-   welcome.md
-   authors.md
+   :maxdepth: 1
+   :glob:
 
-Da Basics:
+   *
 
-.. toctree::
-   tutorials/environment_setup.md
+
 
 Indices and tables
 ==================
