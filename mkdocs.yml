@@ -1,0 +1,6 @@
+site_name: Groovin' Mod Framework Documentation
+nav:
+    - Home: index.rst
+    - About: welcome.md
+    - Da Basics: 
+      - Environment Setup: environment_setup.md
