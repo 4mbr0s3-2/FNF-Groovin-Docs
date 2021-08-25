@@ -3,4 +3,5 @@ nav:
     - Home: index.rst
     - About: welcome.md
     - Da Basics: 
-      - Environment Setup: environment_setup.md
+      - Environment Setup: tutorials/environment_setup.md
+      - Creating a Mod: tutorials/creating_a_mod.md

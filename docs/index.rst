@@ -11,6 +11,7 @@ Da Basics:
 
 .. toctree::
    tutorials/environment_setup.md
+   tutorials/creating_a_mod.md
 
 Indices and tables
 ==================
