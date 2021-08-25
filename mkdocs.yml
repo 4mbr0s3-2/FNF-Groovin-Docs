@@ -5,3 +5,5 @@ nav:
     - Da Basics: 
       - Environment Setup: tutorials/environment_setup.md
       - Creating a Mod: tutorials/creating_a_mod.md
+theme:
+    name: readthedocs
