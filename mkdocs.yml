@@ -1,9 +1,9 @@
 site_name: Groovin' Mod Framework Documentation
 nav:
-    - Home: index.rst
+    - Home: index.md
+    - Authors: authors.md
     - About: welcome.md
     - Da Basics: 
       - Environment Setup: tutorials/environment_setup.md
       - Creating a Mod: tutorials/creating_a_mod.md
-theme:
-    name: readthedocs
+theme: readthedocs
