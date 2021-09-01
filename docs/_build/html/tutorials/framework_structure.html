@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Framework Structure &#8212; Read the Docs Template 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Read the Docs Template 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Framework Structure</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="framework-structure">
+<h1>Framework Structure<a class="headerlink" href="#framework-structure" title="Permalink to this headline">¶</a></h1>
+<p>In <em>Groovin’</em>, code is split into four five folders: <em>source</em>, <em>source_internal</em>, <em>source_internal_mod</em>, <em>source_mod</em>, and <em>source_mod_lib</em>.</p>
+<section id="source-folder">
+<h2>/source folder<a class="headerlink" href="#source-folder" title="Permalink to this headline">¶</a></h2>
+<p>This folder contains all the original <em>Friday Night Funkin’</em> code, and direct mod functionality should <em>not</em> be put in any of the code here.
+Only small sections of the original code should be changed to expand the framework functionality.
+This is necessary to keep the code easily portable to newer versions of <em>Friday Night Funkin’</em>.</p>
+</section>
+<section id="source-internal">
+<h2>/source_internal<a class="headerlink" href="#source-internal" title="Permalink to this headline">¶</a></h2>
+<p>This folder contains all the code for <em>Groovin’</em>.
+Functionality that handles how mods are executed and classes that belong to the framework itself should go in here.
+Modders should not touch this folder either.
+If there is an absence of a modding functionality, such as a missing <em>mod hook</em> (we’ll get into what that is later), modders may add it and are encouraged to pull request their additions to the framework.</p>
+</section>
+<section id="source-internal-mod">
+<h2>/source_internal_mod<a class="headerlink" href="#source-internal-mod" title="Permalink to this headline">¶</a></h2>
+<p>This folder contains all the code for internal mods of <em>Groovin’</em>.
+Internal mods are mods that come <strong>bundled</strong> with <em>Groovin’</em> and that are common necessities for a proper “engine”.
+Some examples of internal mods include <em>Groovin Input</em>, which likens the input system to other rhythm games and provides quality-of-life features like a hit error bar, and <em>Schmovin</em>, which is reponsible for <strong>all</strong> the modcharting functionality for <em>Groovin’</em>.
+This is the folder that the Groovin’ Team would deal with the most, so, like the <em>/source</em> folder, mod functionality should not be put in here.</p>
+</section>
+<section id="source-mod">
+<h2>/source_mod<a class="headerlink" href="#source-mod" title="Permalink to this headline">¶</a></h2>
+<p>This is the folder where all mod code belongs. It’s also where modders are able to configure some settings about the framework.
+<em>ModReferences.hx</em> and <em>FrameworkConfig.hx</em> are the most important files here.</p>
+<p><em>ModReferences.hx</em> references all the mods that shall be included or forced in the build.
+It’s necessary to reference each mod that will be used in the build by adding the class name to Ref() so that the mod class does not get eliminated during compilation (<em>see <a class="reference external" href="https://haxe.org/manual/cr-dce.html">Dead Code Elimination</a></em>).</p>
+<p><em>FrameworkConfig.hx</em> contains some changeable constants for the framework.</p>
+</section>
+<section id="source-mod-lib">
+<h2>/source_mod_lib<a class="headerlink" href="#source-mod-lib" title="Permalink to this headline">¶</a></h2>
+<p>This folder usually remains unused but is meant to be a place for external Haxe libraries for Groovin’ mods that don’t want to put libraries in their package.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Framework Structure</a><ul>
+<li><a class="reference internal" href="#source-folder">/source folder</a></li>
+<li><a class="reference internal" href="#source-internal">/source_internal</a></li>
+<li><a class="reference internal" href="#source-internal-mod">/source_internal_mod</a></li>
+<li><a class="reference internal" href="#source-mod">/source_mod</a></li>
+<li><a class="reference internal" href="#source-mod-lib">/source_mod_lib</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tutorials/framework_structure.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Read the Docs Template 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Framework Structure</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014, Read the Docs.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
+    </div>
+  </body>
+</html>

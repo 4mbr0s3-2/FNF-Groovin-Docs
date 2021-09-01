@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Creating a Mod &#8212; Read the Docs Template 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Framework Structure" href="framework_structure.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="framework_structure.html" title="Framework Structure"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Read the Docs Template 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Creating a Mod</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="creating-a-mod">
+<h1>Creating a Mod<a class="headerlink" href="#creating-a-mod" title="Permalink to this headline">¶</a></h1>
+<p><em>Note: Groovin’s way of doing mods is way different from other Friday Night Funkin’ engines. If you’re familiar with other game mod loaders, you’ll see some similarity.</em></p>
+<section id="foreword">
+<h2>Foreword<a class="headerlink" href="#foreword" title="Permalink to this headline">¶</a></h2>
+<p>If you’re familiar with modding in Kade Engine or Modding Plus or have watched tutorials for them on making custom characters, weeks, songs, mechanics, <em>throw everything you know about those out the window</em>, because we’re (almost) <em>never going to touch the original game’s code</em>. It’s about to get freaky… <em>(on a friday night yeah)</em></p>
+</section>
+<section id="id1">
+<h2>Creating a Mod<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Naming Convention: Folders will always be in <em>snake_case</em>, while code files and classes will always be in <em>UpperCamelCase</em>.</p>
+<p>If you know that your mod is going to have big systems of original code that loosely interact with each other (see some of the internal mods to judge if your mod is like that), make a folder for the mod under <em>/source_mod</em>, and make some appropriate subfolders for the mod (/note_mods, /themes, /shaders).</p>
+<p>Otherwise, if you know that your mod is going to be just a week with three songs, you can make one file under <em>/source_mod</em>.</p>
+</section>
+<section id="boilerplate-code">
+<h2>Boilerplate code<a class="headerlink" href="#boilerplate-code" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-haxe notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="n">ExampleMod</span> <span class="kd">extends</span> <span class="n">Mod</span>
+<span class="p">{</span>
+	<span class="kd">override</span> <span class="kd">function</span> <span class="nf">Initialize</span><span class="p">()</span>
+	<span class="p">{</span>
+        <span class="c1">// Insert your mod hooks here, and other initialization things...</span>
+	<span class="p">}</span>
+
+	<span class="kd">override</span> <span class="kd">function</span> <span class="nf">ShouldRun</span><span class="p">():</span><span class="n">Bool</span>
+	<span class="p">{</span>
+        <span class="c1">// Only run this mod if the week&#39;s stage matches this mod.</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">Type</span><span class="p">.</span><span class="n">getClass</span><span class="p">(</span><span class="n">FlxG</span><span class="p">.</span><span class="n">state</span><span class="p">)</span> <span class="o">==</span> <span class="n">PlayState</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="k">return</span> <span class="n">PlayState</span><span class="p">.</span><span class="n">curMod</span> <span class="o">==</span> <span class="k">this</span> <span class="o">&amp;&amp;</span> <span class="n">PlayState</span><span class="p">.</span><span class="n">isModdedStage</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <em>ShouldRun</em> method indicates if most of the mod’s functions can run within the PlayState state, or the actual gameplay state.</p>
+<p>For a mod meant to be only run on its own stages, the boilerplate code should be kept.
+Otherwise, for a mod that can be run on any stage, such as <em>Groovin’ Input</em>, <em>ShouldRun</em> should always return <em>true</em>.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Creating a Mod</a><ul>
+<li><a class="reference internal" href="#foreword">Foreword</a></li>
+<li><a class="reference internal" href="#id1">Creating a Mod</a></li>
+<li><a class="reference internal" href="#boilerplate-code">Boilerplate code</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="framework_structure.html"
+                        title="previous chapter">Framework Structure</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tutorials/creating_a_mod.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="framework_structure.html" title="Framework Structure"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Read the Docs Template 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Creating a Mod</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014, Read the Docs.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
+    </div>
+  </body>
+</html>

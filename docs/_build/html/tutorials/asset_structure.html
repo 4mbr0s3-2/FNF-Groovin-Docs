@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Asset Structure &#8212; Read the Docs Template 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Creating a Mod" href="creating_a_mod.html" />
+    <link rel="prev" title="Framework Structure" href="framework_structure.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="creating_a_mod.html" title="Creating a Mod"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="framework_structure.html" title="Framework Structure"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Read the Docs Template 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Asset Structure</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="asset-structure">
+<h1>Asset Structure<a class="headerlink" href="#asset-structure" title="Permalink to this headline">¶</a></h1>
+<section id="mod-assets">
+<h2>/mod_assets<a class="headerlink" href="#mod-assets" title="Permalink to this headline">¶</a></h2>
+<p>Much like modders should not touch <em>/source</em>, modders should also not touch <em>/assets</em>. Instead, modders should add mod assets under <em>/mod_assets</em> (obviously).
+The following sections will cover different folders under <em>/mod_assets</em>.</p>
+</section>
+<section id="folder-structure">
+<h2>Folder Structure<a class="headerlink" href="#folder-structure" title="Permalink to this headline">¶</a></h2>
+<p>Assets for any mod should be put under a folder of the same name as the mod’s class name.
+For example, a .json chart for the song example-song for ExampleMod should be put under <code class="docutils literal notranslate"><span class="pre">/mod_assets/data/ExampleMod/example-song/example-song.json</span></code>.</p>
+<section id="data">
+<h3>/data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h3>
+<p>All of a mod’s charts should be stored here.</p>
+</section>
+<section id="weeks">
+<h3>/weeks<a class="headerlink" href="#weeks" title="Permalink to this headline">¶</a></h3>
+<p>All of a mod’s song assets should be stored here.</p>
+</section>
+<section id="songs">
+<h3>/songs<a class="headerlink" href="#songs" title="Permalink to this headline">¶</a></h3>
+<p>All of a mod’s music files should be stored here.</p>
+</section>
+<section id="shared">
+<h3>/shared<a class="headerlink" href="#shared" title="Permalink to this headline">¶</a></h3>
+<p>This folder is reserved for the Groovin’ framework.</p>
+</section>
+</section>
+<section id="preload">
+<h2>/preload<a class="headerlink" href="#preload" title="Permalink to this headline">¶</a></h2>
+<p>The <em>/preload</em> folder contains the same structure as its parent folder, <em>/mod_assets</em>, but all assets under it are pre-loaded and, in-game, accessed through the <em>root</em> instead of <em>/preload.</em>
+For example, an image in <code class="docutils literal notranslate"><span class="pre">/mod_assets/preload/images/image.png</span></code> should be accessed in-game with <code class="docutils literal notranslate"><span class="pre">/mod_assets/images/image.png</span></code>.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Asset Structure</a><ul>
+<li><a class="reference internal" href="#mod-assets">/mod_assets</a></li>
+<li><a class="reference internal" href="#folder-structure">Folder Structure</a><ul>
+<li><a class="reference internal" href="#data">/data</a></li>
+<li><a class="reference internal" href="#weeks">/weeks</a></li>
+<li><a class="reference internal" href="#songs">/songs</a></li>
+<li><a class="reference internal" href="#shared">/shared</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#preload">/preload</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="framework_structure.html"
+                        title="previous chapter">Framework Structure</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="creating_a_mod.html"
+                        title="next chapter">Creating a Mod</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tutorials/asset_structure.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="creating_a_mod.html" title="Creating a Mod"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="framework_structure.html" title="Framework Structure"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Read the Docs Template 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Asset Structure</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014, Read the Docs.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
+    </div>
+  </body>
+</html>
