@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>How to Make an Actually Decent Modchart (WIP…) &#8212; Read the Docs Template 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Read the Docs Template 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">How to Make an Actually Decent Modchart (WIP…)</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="how-to-make-an-actually-decent-modchart-wip">
+<h1>How to Make an Actually Decent Modchart (WIP…)<a class="headerlink" href="#how-to-make-an-actually-decent-modchart-wip" title="Permalink to this headline">¶</a></h1>
+<p><em>Authored by 4mbr0s3 2</em></p>
+<p><em>Note: This is NOT a tutorial on how to modchart in Schmovin’, Kade Engine, ProjectFNF, Psych Engine, etc. This is also not a guide for making a modchart in NotITG, since it’s for people familiar with Friday Night Funkin’s Haxe codebase and not StepMania’s Lua scripts.</em></p>
+<p>This guide assumes that you already know how to make a modchart with any of the engines (or that you’re epic enough of a programmer to make one from the vanilla game out of sheer willpower).</p>
+<section id="the-sine-wave-syndrome">
+<h2>The “Sine Wave” Syndrome<a class="headerlink" href="#the-sine-wave-syndrome" title="Permalink to this headline">¶</a></h2>
+<p>Before getting into the actual nitty-gritty, let’s first learn about what to (try to) avoid.</p>
+<p>Have you ever heard of the <a class="reference external" href="https://www.urbandictionary.com/define.php?term=Whitty%20syndrome"><em>Whitty Syndrome</em></a>?
+There’s something similar to that for modcharts, especially Lua modcharts. I call it the “Sine Wave” Syndrome.
+Here’s a brief history of it.</p>
+<p>With Kade Engine’s new Lua bindings, <a class="reference external" href="https://twitter.com/TaroNuke"><em>TaroNuke</em></a>, a rhythm game developer and StepMania modder (best known for UKSRT and NotITG… please check his work out), created some example code for the system.</p>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">currentBeat</span> <span class="o">=</span> <span class="p">(</span><span class="n">songPos</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">bpm</span><span class="o">/</span><span class="mi">60</span><span class="p">)</span>
+<span class="kr">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span> <span class="kr">do</span>
+    <span class="kd">local</span> <span class="n">receptor</span> <span class="o">=</span> <span class="nb">_G</span><span class="p">[</span><span class="s1">&#39;receptor_&#39;</span><span class="o">..</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">receptor</span><span class="p">.</span><span class="n">angle</span> <span class="o">=</span> <span class="p">(</span><span class="n">spinLength</span> <span class="o">/</span> <span class="mi">7</span><span class="p">)</span> <span class="o">*</span> <span class="o">-</span><span class="nb">math.sin</span><span class="p">((</span><span class="n">currentBeat</span> <span class="o">+</span> <span class="n">i</span><span class="o">*</span><span class="mf">0.25</span><span class="p">)</span> <span class="o">*</span> <span class="nb">math.pi</span><span class="p">)</span>
+    <span class="c1">-- Wow, sine (and sine with a phase shift of 3*pi/2) waves!</span>
+    <span class="n">receptor</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">receptor</span><span class="p">.</span><span class="n">defaultX</span> <span class="o">+</span> <span class="n">spinLength</span> <span class="o">*</span> <span class="nb">math.sin</span><span class="p">((</span><span class="n">currentBeat</span> <span class="o">+</span> <span class="n">i</span><span class="o">*</span><span class="mf">0.25</span><span class="p">)</span> <span class="o">*</span> <span class="nb">math.pi</span><span class="p">)</span>
+    <span class="n">receptor</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">receptor</span><span class="p">.</span><span class="n">defaultY</span> <span class="o">+</span> <span class="n">spinLength</span> <span class="o">*</span> <span class="nb">math.cos</span><span class="p">((</span><span class="n">currentBeat</span> <span class="o">+</span> <span class="n">i</span><span class="o">*</span><span class="mf">0.25</span><span class="p">)</span> <span class="o">*</span> <span class="nb">math.pi</span><span class="p">)</span>
+    <span class="kr">end</span>
+</pre></div>
+</div>
+<p><em>…That was the only modchart code example for Kade Engine for the longest time.</em></p>
+<p>So, naturally, other mods used it as a basis for modcharting.
+Here’s a list of mods that use this sine wave effect:</p>
+<ul class="simple">
+<li><p>V.S. Agoti</p></li>
+<li><p>V.S Zardy - Foolhardy RetroSpecter Remix…</p></li>
+<li><p>Smoke Em Out Struggle - Release RetroSpecter Remix</p></li>
+<li><p>Custom Roses Modchart! (this one’s actually pretty neat)</p></li>
+<li><p>V.S Shaggy - God Eater RetroSpecter Remix</p></li>
+<li><p>VS Trollface/Trollge</p></li>
+<li><p>Vs. RetroSpecter</p></li>
+<li><p>Friday Night Funkin’: Neo</p></li>
+</ul>
+<p>Using sine waves in modcharts isn’t necessarily bad (it’s what the <em>tipsy</em> and <em>drunk</em> mods in the original DDR game are, after all), but slapping it onto a chart and calling it a modchart can feel pretty bland and uncreative, especially when it has been used so much in other mods.</p>
+</section>
+<section id="readability">
+<h2>Readability<a class="headerlink" href="#readability" title="Permalink to this headline">¶</a></h2>
+<p>OK, now it’s time that we actually start talking about FNF modcharts.
+It’s important that modchart creators understand how players would approach sightreading a modchart.
+There are a few things to address with regards to making a chart readable.</p>
+<section id="note-coloring">
+<h3>Note coloring<a class="headerlink" href="#note-coloring" title="Permalink to this headline">¶</a></h3>
+<p>Friday Night Funkin’s notes only show one thing: direction. Each note direction has a corresponding color associated with it, which means that the appearance of FNF’s notes can only give players the same piece of information.
+However, StepMania uses timing colors, or quantization colors, which means that StepMania’s notes give players both the direction and the time to hit them.</p>
+<p>When applying modchart effects that can affect the player’s conception of note timings in FNF, the player can clearly see what arrow to press, but not <em>when</em>. Therefore, <em>timing colors are important for conveying this missing piece of information.</em></p>
+</section>
+<section id="memorization">
+<h3>Memorization<a class="headerlink" href="#memorization" title="Permalink to this headline">¶</a></h3>
+<p>Memorization is an <em>incredible</em> game design mechanic to train players on.</p>
+<p><em>One of the best ways of taking advantage of this mechanic with modcharting is to give the player a brief glimpse into a section of the chart and to hide or distract the player from that particular section in any creative way.</em></p>
+<p>Think of it like <a class="reference external" href="https://en.wikipedia.org/wiki/Object_permanence">object permanence</a>, but for rhythm game arrows.</p>
+<p>Let’s do some case studies to see how other mods use the mechanic of memorization.</p>
+<section id="fnf-mod-case-study-kastimagina-from-in-the-galaxy-mod-by-allen98637">
+<h4>FNF Mod Case Study: <a class="reference external" href="https://www.youtube.com/watch?v=_dNohf8Yaik"><em>Kastimagina</em> from “In The Galaxy Mod” by Allen98637</a><a class="headerlink" href="#fnf-mod-case-study-kastimagina-from-in-the-galaxy-mod-by-allen98637" title="Permalink to this headline">¶</a></h4>
+<p>Additionally, this particular way of adding memorization can be considered the cornerstone of many <em>NotITG</em> modfiles.
+So, let’s disect some NotITG modfiles.</p>
+</section>
+<section id="non-fnf-case-study-sakuramichi-overdrive-arm-remix-rizuna-from-uksrt-lagc15-by-taro4012-taronuke">
+<h4>Non-FNF Case Study: <a class="reference external" href="https://www.youtube.com/watch?v=RDWKedOHitU"><em>Sakuramichi Overdrive (ARM Remix) / rizuna</em> from UKSRT LAGC15 by taro4012 / TaroNuke</a><a class="headerlink" href="#non-fnf-case-study-sakuramichi-overdrive-arm-remix-rizuna-from-uksrt-lagc15-by-taro4012-taronuke" title="Permalink to this headline">¶</a></h4>
+</section>
+</section>
+<section id="eye-movement">
+<h3>Eye movement<a class="headerlink" href="#eye-movement" title="Permalink to this headline">¶</a></h3>
+<p>Eye movement is another important aspect to consider when making modcharts.
+<em>It’s important to consider where the player is looking at all times of a modchart.</em> It might be useful to give the player hints for where to look on-screen as well.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">How to Make an Actually Decent Modchart (WIP…)</a><ul>
+<li><a class="reference internal" href="#the-sine-wave-syndrome">The “Sine Wave” Syndrome</a></li>
+<li><a class="reference internal" href="#readability">Readability</a><ul>
+<li><a class="reference internal" href="#note-coloring">Note coloring</a></li>
+<li><a class="reference internal" href="#memorization">Memorization</a><ul>
+<li><a class="reference internal" href="#fnf-mod-case-study-kastimagina-from-in-the-galaxy-mod-by-allen98637">FNF Mod Case Study: <em>Kastimagina</em> from “In The Galaxy Mod” by Allen98637</a></li>
+<li><a class="reference internal" href="#non-fnf-case-study-sakuramichi-overdrive-arm-remix-rizuna-from-uksrt-lagc15-by-taro4012-taronuke">Non-FNF Case Study: <em>Sakuramichi Overdrive (ARM Remix) / rizuna</em> from UKSRT LAGC15 by taro4012 / TaroNuke</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#eye-movement">Eye movement</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tutorials/modcharting_guide.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Read the Docs Template 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">How to Make an Actually Decent Modchart (WIP…)</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014, Read the Docs.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
+    </div>
+  </body>
+</html>
